@@ -3,14 +3,14 @@ import Messages from './Messages'
 import InputField from './InputField'
 import { Container, Row } from 'react-bootstrap'
 
-const Chat = ({messages}) => {
+const Chat = ({messages, sendMessage}) => {
   return (
     <Container>
       <Row>
         <Messages messages={messages}/>
       </Row>
       <Row>
-        <InputField/>
+        <InputField sendMessage={sendMessage}/>
       </Row>
     </Container>
   )

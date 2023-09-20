@@ -4,7 +4,7 @@ import { Card } from 'react-bootstrap'
 const Message = ({message}) => {
   return (
     <Card body> 
-      {message} 
+      {message.body} 
     </Card>
   )
 }
