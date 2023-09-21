@@ -1,11 +1,21 @@
 import React from 'react'
 import Message from './Message'
+import { Col, Row } from 'react-bootstrap'
 
 const Messages = ({messages}) => {
   return (
-    <div>
-      {messages.map(message => <Message message={message}/>)}
-    </div>
+    <>
+      {messages.map(message => {
+        return (
+          <Row className='mb-3'>
+            <Col>
+              <Message message={message}/>
+            </Col>
+          </Row>
+        )
+      }
+      )}
+    </>
   )
 }
 

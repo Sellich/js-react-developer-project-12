@@ -1,18 +1,16 @@
 import React from 'react'
-import ListGroup from 'react-bootstrap/ListGroup';
+import { ListGroup} from 'react-bootstrap';
 
 const Channels = ({channels, activeChannel}) => {
   return (
-    <div>
-      <ListGroup>
-        {channels && channels.map((channel) => {
-          return  (
-            <ListGroup.Item key={channel.id} active={channel.id === activeChannel}>
+    <ListGroup defaultActiveKey={'general'} className="flex-column">
+      {channels && channels.map((channel) => {
+        return  (
+          <ListGroup.Item key={channel.id} action eventKey={channel.name}>
               {channel.name}
-            </ListGroup.Item>)
-        })}
-      </ListGroup>
-    </div>
+          </ListGroup.Item>)
+      })}
+    </ListGroup>
   )
 }
 

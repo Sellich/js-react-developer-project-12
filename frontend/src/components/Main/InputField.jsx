@@ -1,6 +1,6 @@
 import { Formik } from 'formik'
 import React from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Button, Col, Form, Row } from 'react-bootstrap'
 
 const InputField = ({sendMessage}) => {
   return (
@@ -12,17 +12,22 @@ const InputField = ({sendMessage}) => {
     }}>
       {({values, isSubmitting, handleChange, handleSubmit}) => (
         <Form onSubmit={handleSubmit}>
-          <Form.Control
-            type="text"
-            id="messageText"
-            aria-describedby="messageText"
-            value={values.messageText}
-            onChange={handleChange}
-          />
-          <Button as="input" type="submit" value="Submit" disabled={isSubmitting}/>
+          <Row>
+            <Col md={6}>
+              <Form.Control
+                type="text"
+                id="messageText"
+                aria-describedby="messageText"
+                value={values.messageText}
+                onChange={handleChange}
+              />
+            </Col>
+            <Col md={{ span: 2, offset: 4 }}>
+              <Button as="input" type="submit" value="Send message" disabled={isSubmitting}/>
+            </Col>
+          </Row>
         </Form>
       )}
-
     </Formik>
     </div>
   )

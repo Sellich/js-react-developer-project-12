@@ -5,11 +5,11 @@ import { Container, Row } from 'react-bootstrap'
 
 const Chat = ({messages, sendMessage}) => {
   return (
-    <Container>
-      <Row>
+    <Container fluid>
+      <Row style={{width: '900px'}}>
         <Messages messages={messages}/>
       </Row>
-      <Row>
+      <Row style={{width: '900px'}}>
         <InputField sendMessage={sendMessage}/>
       </Row>
     </Container>

@@ -1,19 +1,8 @@
-import { Formik, Form, Field } from 'formik';
+import { Formik } from 'formik';
 import React from 'react';
-import * as Yup from 'yup';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
-const signUpSchema = Yup.object().shape({
-  login: Yup.string()
-    .min(4, 'Too short')
-    .max(50, 'Too long')
-    .required('Required'),
-  password: Yup.string()
-    .min(4, 'Too short')
-    .max(8, 'Too Long')
-    .required('Required'),
-});
+import { Button, Form } from 'react-bootstrap';
 
 const Login = ({setUser}) => {
   const navigate = useNavigate();
@@ -22,7 +11,6 @@ const Login = ({setUser}) => {
     <div>
       <Formik
         initialValues={{login: '', password: ''}}
-        validationSchema={signUpSchema}
         onSubmit={(values, actions) => {
           const data = {
             username: values.login,
@@ -39,26 +27,27 @@ const Login = ({setUser}) => {
         }}
       >
         {
-          ({errors, touched}) => (
-            <Form>
-              <div>
-                <label htmlFor='login'>
-                  Логин:
-                </label>
-                <Field name='login'/>
-                {errors.login && touched.login ? (<div>{errors.login}</div>) : null}
-              </div>
-              <div>
-                <label htmlFor='password'>
-                  Пароль:
-                </label>
-                <Field name='password' type='password'/>
-                {errors.password && touched.password ? (<div>{errors.password}</div>) : null}
-              </div>
-              <button type='submit'>
-                Отправить
-              </button>
-              {errors.request && (<div>{errors.request}</div>)}
+          ({errors, handleSubmit, handleChange, handleBlur}) => (
+            <Form onSubmit={handleSubmit}>
+              <Form.Group className='mb-3'>
+                <Form.Label>
+                  Login:
+                </Form.Label>
+                <Form.Control name='login' onChange={handleChange} onBlur={handleBlur}/>
+              </Form.Group>
+              <Form.Group className='mb-3'>
+                <Form.Label>
+                  Password:
+                </Form.Label>
+                <Form.Control name='password' type='password' onChange={handleChange} onBlur={handleBlur}/>
+              </Form.Group>
+              <Button type='submit'>
+                Login
+              </Button>{' '}
+              <Button variant='dark' onClick={() => navigate('/signUp')}>
+                Sign Up
+              </Button>
+              <Form.Control.Feedback className='text-danger' type='text-danger'>{errors.request}</Form.Control.Feedback>
             </Form>
           )
         }
