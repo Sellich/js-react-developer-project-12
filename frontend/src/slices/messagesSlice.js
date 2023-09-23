@@ -9,9 +9,7 @@ const messagesSlice = createSlice({
   initialState,
   reducers: {
     addMessage: (state, action) => {
-      if (action.payload.channelId === 1) {
-        messagesAdapter.addOne(state, action);
-      }
+      messagesAdapter.addOne(state, action);
     },
   },
   extraReducers: (builder) => {
